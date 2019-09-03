@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/products")
@@ -26,7 +27,7 @@ public class ProductController {
         return "product-form";
     }
 
-    @RequestMapping("/addProduct")
+    @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String processForm(@ModelAttribute("product") Product product, Model model){
         productService.saveProduct(product);
         model.addAttribute("products", productService.getAllProduct());
