@@ -1,13 +1,11 @@
 package lesson3;
 
+import com.hibernate.InitialiseDb;
 import com.hibernate.dao.SimpleDao;
 import com.hibernate.dao.SimpleDaoImpl;
 import com.hibernate.entity.Customer;
 import org.hibernate.Session;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 import java.util.List;
@@ -15,8 +13,18 @@ import java.util.List;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestHibernate extends Assert {
 
-    private Session session = null;
+    private static Session session = null;
     private SimpleDao simpleDao = null;
+
+    @BeforeClass
+    public static void setUp(){
+        InitialiseDb.forcePrepareData();
+    }
+
+    @AfterClass
+    public static void tearDown(){
+        session.close();
+    }
 
     @Before
     public void test1(){

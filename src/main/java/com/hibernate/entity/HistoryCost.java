@@ -18,11 +18,11 @@ public class HistoryCost extends AbstractEntity{
     @Column(name = "cost")
     private Integer cost;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_product")
     private Product product;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_customer")
     private Customer customer;
 }

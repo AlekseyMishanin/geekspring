@@ -26,7 +26,7 @@ public class Customer  extends AbstractEntity implements Serializable{
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(name = "sales_history",
             joinColumns = @JoinColumn(name = "id_customer"),
             inverseJoinColumns = @JoinColumn(name = "id_product"))
